@@ -18,7 +18,7 @@ function App() {
         <div>
           <h1>Hello I'm Sofio!</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            My first React app, built while learning Git, GitHub and Vite.
           </p>
         </div>
         <p>Count is {count}</p>
