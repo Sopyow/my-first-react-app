@@ -22,7 +22,7 @@ function App() {
           </p>
         </div>
         <p>Count is {count}</p>
-        <div>
+        <div className="button-row">
           <button type="button" className="counter" onClick={() => setCount((count) => count - 1)}>
             −1
           </button>
