@@ -5,6 +5,14 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 import SkillCard from './components/SkillCard'
 
+const skills = [
+  { name: 'Git & GitHub', level: 'Learning' },
+  { name: 'React', level: 'Beginner' },
+  { name: 'Vite', level: 'Beginner' },
+  { name: 'JavaScript', level: 'Beginner' },
+  { name: 'CSS', level: 'Beginner' }
+]
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -35,10 +43,9 @@ function App() {
           </button>
         </div>
         <div className="skill-list">
-          <SkillCard name="Git & GitHub" level="Learning" />
-          <SkillCard name="React" level="Beginner" />
-          <SkillCard name="Vite" level="Beginner" />
-          <SkillCard name="JavaScript" level="Beginner" />
+          {skills.map((skill) => (
+            <SkillCard key={skill.name} name={skill.name} level={skill.level} />
+          ))}
         </div>
       </section>
 
