@@ -3,6 +3,7 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import SkillCard from './components/SkillCard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +33,12 @@ function App() {
           <button type="button" className="counter" onClick={() => setCount(0)}>
             Reset
           </button>
+        </div>
+        <div className="skill-list">
+          <SkillCard name="Git & GitHub" level="Learning" />
+          <SkillCard name="React" level="Beginner" />
+          <SkillCard name="Vite" level="Beginner" />
+          <SkillCard name="JavaScript" level="Beginner" />
         </div>
       </section>
 

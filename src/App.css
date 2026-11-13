@@ -191,3 +191,17 @@
   gap: 12px;
   justify-content: center;
 }
+
+.skill-list {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.skill-card {
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 12px 20px;
+}
