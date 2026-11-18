@@ -17,18 +17,26 @@ function App() {
   const [count, setCount] = useState(0)
   const [skills, setSkills] = useState(initialSkills)
   const [newSkill, setNewSkill] = useState('')
+  const [error, setError] = useState('')
 
   function handleAddSkill(event) {
     event.preventDefault()
 
     const name = newSkill.trim()
-    if (name === '') return
+    if (name === '') {
+      setError('Please type a skill name.')
+      return
+    }
 
     const alreadyExists = skills.some((skill) => skill.name.toLowerCase() === name.toLowerCase())
 
-    if (alreadyExists) return
+    if (alreadyExists) {
+      setError(`You already have "${name}" in your skills!`)
+      return
+    }
     setSkills([...skills, { id: crypto.randomUUID(), name: name, level: 'Beginner' }])
     setNewSkill('')
+    setError('')
   }
 
   return (
@@ -62,10 +70,11 @@ function App() {
             type="text"
             placeholder="Add a skill..."
             value={newSkill}
-            onChange={(event) => setNewSkill(event.target.value)}
+            onChange={(event) => { setNewSkill(event.target.value); setError('') }}
           />
           <button type="submit" className="counter">Add</button>
         </form>
+        {error && <p className="error-message">{error}</p>}
         <div className="skill-list">
           {skills.map((skill) => (
             <SkillCard key={skill.id} name={skill.name} level={skill.level} />
