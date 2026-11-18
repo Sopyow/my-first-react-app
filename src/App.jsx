@@ -5,16 +5,31 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 import SkillCard from './components/SkillCard'
 
-const skills = [
-  { name: 'Git & GitHub', level: 'Learning' },
-  { name: 'React', level: 'Beginner' },
-  { name: 'Vite', level: 'Beginner' },
-  { name: 'JavaScript', level: 'Beginner' },
-  { name: 'CSS', level: 'Beginner' }
+const initialSkills = [
+  { id: 1, name: 'Git & GitHub', level: 'Learning' },
+  { id: 2, name: 'React', level: 'Beginner' },
+  { id: 3, name: 'Vite', level: 'Beginner' },
+  { id: 4, name: 'JavaScript', level: 'Beginner' },
+  { id: 5, name: 'CSS', level: 'Beginner' },
 ]
 
 function App() {
   const [count, setCount] = useState(0)
+  const [skills, setSkills] = useState(initialSkills)
+  const [newSkill, setNewSkill] = useState('')
+
+  function handleAddSkill(event) {
+    event.preventDefault()
+
+    const name = newSkill.trim()
+    if (name === '') return
+
+    const alreadyExists = skills.some((skill) => skill.name.toLowerCase() === name.toLowerCase())
+
+    if (alreadyExists) return
+    setSkills([...skills, { id: crypto.randomUUID(), name: name, level: 'Beginner' }])
+    setNewSkill('')
+  }
 
   return (
     <>
@@ -42,9 +57,18 @@ function App() {
             Reset
           </button>
         </div>
+        <form className="skill-form" onSubmit={handleAddSkill}>
+          <input
+            type="text"
+            placeholder="Add a skill..."
+            value={newSkill}
+            onChange={(event) => setNewSkill(event.target.value)}
+          />
+          <button type="submit" className="counter">Add</button>
+        </form>
         <div className="skill-list">
           {skills.map((skill) => (
-            <SkillCard key={skill.name} name={skill.name} level={skill.level} />
+            <SkillCard key={skill.id} name={skill.name} level={skill.level} />
           ))}
         </div>
       </section>
